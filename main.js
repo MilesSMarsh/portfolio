@@ -1,6 +1,6 @@
-let slideIndex = [1,1,1,1,1,1,1,1];
+let slideIndex = [1,1,1,1,1,1,1,1,1];
 /* Class the members of each slideshow group with different CSS classes */
-let slideId = ["runeomancy", "rearwindow", "rewindplatformer","guarden","runner","shootgame","sticker","geocache"];
+let slideId = ["runeomancy", "rearwindow", "rewindplatformer","guarden","runner","shootgame","sticker","geocache", "archipelago"];
 
 function plusSlides(n, no) {
   showSlides(slideIndex[no] += n, no);

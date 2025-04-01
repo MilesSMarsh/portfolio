@@ -15,6 +15,8 @@ let myInstance;
 let canvasContainer;
 var centerHorz, centerVert;
 let seed = 1;
+let initialized = false;
+let sunPos = 0;
 
 
 function resizeScreen() {
@@ -27,6 +29,7 @@ function resizeScreen() {
 
 // setup() function is called once when the program starts
 function setup() {
+    initialized = false;
   // place our canvas, making it fit our container
   canvasContainer = $("#canvas_container");
   let canvas = createCanvas(100, 100);
@@ -34,18 +37,27 @@ function setup() {
 
   // resize canvas is the page is resized
   $(window).resize(function() {
+    initialized = false;
     resizeScreen();
   });
   resizeScreen();
 
   createButton("reimagine").mousePressed(() => seed++);
+
+
+  randomSeed(seed); // Seed the random number generator
+  var slider = document.getElementById("myRange");
+  // Update the current slider value (each time you drag the slider handle)
+  slider.oninput = function() {
+    sunPos = this.value;
+  }
+
 }
 
-// draw() function is called repeatedly, it's the main animation loop
-function draw() {
-    randomSeed(seed); // Seed the random number generator
-    noStroke();
-    let horizonHeight = canvasContainer.height()/2.5
+function drawOnce(){
+    //Only Draw Once
+  noStroke();
+    let horizonHeight = canvasContainer.height()/2
     let fogHeight = 20
 
     background(color(250, 30, 200));
@@ -55,21 +67,60 @@ function draw() {
     //create sky
     vertGradientRect(0, 0, width, horizonHeight - fogHeight/2, 135, 206, 255, 200, 200, 250);
 
-    
     //horizon fog
     vertGradientRect(0, horizonHeight - fogHeight/2, width, fogHeight, 200, 200, 250, 0, 40, 128);
+    
+    //create clouds
+    let noiseLevel = 255;
+    let noiseScale = 0.009;
+    let cloudHeight = horizonHeight/2;
+
+    // Iterate from top to bottom.
+    for (let y = 0; y < horizonHeight; y += 1) {
+        // Iterate from left to right.
+        for (let x = 0; x < width; x += 1) {
+        // Scale the input coordinates.
+        let nx = noiseScale * x;
+        let ny = noiseScale * y;
+        let nt = noiseScale * frameCount;
+
+        // Compute the noise value.
+        let c = noiseLevel * noise(nx, ny);
+
+        // Draw the point.
+        stroke(color(255, 255, 255, c));
+        point(x, y);
+        }
+    }
+    noStroke();
+
+    
 
 
     //create Ocean
     vertGradientRect(0, horizonHeight+fogHeight/2, width, height - horizonHeight, 0, 40, 128, 35, 206, 255);
-    
+}
 
-  
+// draw() function is called repeatedly, it's the main animation loop
+function draw() {
+    if(!initialized){
+        drawOnce()
+        initialized = true;
+    }
+    drawSun(width*sunPos/100, 50);
 
+}
+
+function drawSun(x, y){
+    fill(color('orange'))
+    circle(x, y, 40);
+    noStroke()
+    fill(color("#FACADE"))
 }
 //x: x position, y: y position, w: width, h: height, sr/sg/sb: starting rgb values, er/eg/eb: ending rgb values
 function vertGradientRect(x, y, w, h, sr, sg, sb, er, eg, eb){
 
+    noStroke()
     let stepR = (er - sr)/h;
     let stepG = (eg - sg)/h;
     let stepB = (eb - sb)/h;

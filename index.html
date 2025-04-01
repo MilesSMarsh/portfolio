@@ -5,8 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miles Marsh</title>
-    <script src="main.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.js"></script>
+
+    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="sketch.js" DEFER></script>
 
 </head>
 <body>
@@ -21,6 +26,9 @@
         <a href="https://www.linkedin.com/in/miles-marsh-32b7842a1/">Linkedin</a>
     </div>
 
+    <div id="canvas_container" class="canvas_container">
+        <!-- where the canvas is -->
+    </div>
     
 
     <section id="games">
@@ -58,9 +66,7 @@
                     <div>
                         <h2>Description</h2>
                         <p>Runeomancy is a game demo of a spell system that involves scrybing runes in specific orders to cast spells. The demo is set in a small puzzle platformer level where you can cast each spell to solve different puzzles.</p>
-                        <h2>Contributors</h2>
-                        <h3>Miles Marsh</h3>
-                        <p>Contributions</p>
+                        <h2>Contributions</h2>
                         <ul>
                             <li>Created the spell casting system</li>
                             <li>Created the spell interactions</li>
@@ -68,22 +74,6 @@
                             <li>Implemented physics system in game</li>
                             <li>Assisted in asset ideation and creation</li>
                             <li>Assisted in level design</li>
-                        </ul>
-                        <h3>Sean Rowley</h3>
-                        <p>Contributions</p>
-                        <ul>
-                            <li>Level design and puzzle creation</li>
-                            <li>Game object functionality</li>
-                            <li>Implemented tile set</li>
-                            <li>Character Movement</li>
-                        </ul>
-                        <h3>Adrian Bruce</h3>
-                        <p>Contributions</p>
-                        <ul>
-                            <li>Lead Artist</li>
-                            <li>Asset Design</li>
-                            <li>Assisted in spell interactions</li>
-                            
                         </ul>
 
                         <h2>GitHub</h2>
@@ -132,9 +122,7 @@
                     <div>
                         <h2>Description</h2>
                         <p>Rear Window is a game based off of Alfred Hitchcock's "Rear Window". It is an eye spy game that loosely follows the events of the movie. You can view the scene outside your window and take photos of events that are happening. Once you find all the events of the day it will progress to the next scene. Within the game is a Wave Function Collapse demo that generates houses similar to the ones in the game. Both the game and the WFC demo were implemented in phaser3 and use a custom tile set made in Aseprite and Tiled.</p>
-                        <h2>Contributors</h2>
-                        <h3>Miles Marsh</h3>
-                        <p>Contributions</p>
+                        <h2>Contributions</h2>
                         <ul>
                             <li>Lead Artist</li>
                             <li>Created Tile Set</li>
@@ -142,13 +130,6 @@
                             <li>Created animations</li>
                             <li>Event scripting</li>
                             <li>Programmed the WFC Demo</li>
-                        </ul>
-                        <h3>Sean Rowley</h3>
-                        <p>Contributions</p>
-                        <ul>
-                            <li>Camera movement and photo interactions</li>
-                            <li>Scene Management</li>
-                            <li>Event scripting</li>
                         </ul>
 
                         <h2>GitHub</h2>
@@ -188,11 +169,9 @@
                     <div>
                         <h2>Description</h2>
                         <p>Time Rewind Platformer is a quick proof of concept of implementing a time manipulation system within the Bevy game engine. Within the game you control the white square which is able to move back and forth and jump. You can knock into other squares and push them around, however you are able to completely reverse time all the way back to where you began for all objects. Not only that but you are able to manipulate time locally for just the player or for just the objects. All of this was made with Bevy utilizing the Bevy Rapier physics crate. The entire game is compileable to WASM using trunk and playable on the browser.</p>
-                        <h2>Contributors</h2>
-                        <h3>Miles Marsh</h3>
-                        <p>Contributions</p>
+                        <h2>Contributions</h2>
                         <ul>
-                            <li>Solo developer on this project</li>
+                            <li>Solo developer</li>
                             <li>Integrated the Bevy Rapier physics engine</li>
                             <li>Created the entity components for storing past</li>
                             <li>Created systems for rewinding the past</li>
@@ -244,9 +223,7 @@
                     <div>
                         <h2>Description</h2>
                         <p>Guarden is a wave defense garden sim where you fend off critters and grow upgrades. You start with a shovel but you can choose between a rake and two trowles as weapons as well. You begin the wave by going out the gate to your garden which transports you to a new scene where you can attack pests. Once all enemies are killed you can return to your garden to change weapon or harvest plants. However, plants take a few rounds to grow so you have to spend some time defending before you can harvest. The entire game was programmed in Phaser 3.</p>
-                        <h2>Contributors</h2>
-                        <h3>Miles Marsh</h3>
-                        <p>Contributions</p>
+                        <h2>Contributions</h2>
                         <ul>
                             <li>Created Character Controller</li>
                             <li>Created weapon system</li>
@@ -254,28 +231,6 @@
                             <li>Created hitbox implementation</li>
                             <li>Implemented Interaction with enemies and combat</li>
                             <li>Implemented Interaction with game objects</li>
-                        </ul>
-
-                        <h3>Sean Rowley</h3>
-                        <p>Contributions</p>
-                        <ul>
-                            <li>Scene Management</li>
-                            <li>Enemy spawing</li>
-                            <li>Character Health</li>
-                            <li>Scene Transition</li>
-                        </ul>
-
-                        <h3>Brandon Tanega</h3>
-                        <p>Contributions</p>
-                        <ul>
-                            <li>Lead Artist</li>
-                            <li>asset design</li>
-                        </ul>
-
-                        <h3>Wendy Chen</h3>
-                        <p>Contributions</p>
-                        <ul>
-                            <li>Implemented the plant growing system</li>
                         </ul>
                         <h2>GitHub</h2>
                         <a href="https://github.com/MilesSMarsh/Guarden" target = "_blank" rel="noopener noreferer" style="color:#333">Source Code</a>
@@ -318,9 +273,7 @@
                     <div>
                         <h2>Description</h2>
                         <p>Bram is an endless runner where you have projectiles trailing behind you that you can fire forward. You can cycle through which projectile you want to fire so you can match the projectiles color with the enemies color. Each color has it's own effect and you cant get hit by the enemies. The more enemies you hit the more you points you get and it goes on forever. I made this game entirely in phaser3.</p>
-                        <h2>Contributors</h2>
-                        <h3>Miles Marsh</h3>
-                        <p>Contributions</p>
+                        <h2>Contributions</h2>
                         <ul>
                             <li>Solo developer</li>
                             <li>Created projectile cycling system</li>
@@ -369,9 +322,7 @@
                     <div>
                         <h2>Description</h2>
                         <p>One button game was the theme to this game. Given only one button there are only a few ways to add depth to your game, time being one of them. The gameplay I wanted to explore was the patience to reload your gun versus shooting the oncoming enemies. If you wait for your revolver to fully load you will begin to load a shotgun which is short ranged but will pass through enemies. This game was made in the crisp game engine which is a light weight javascript engine that specializes in simple games.</p>
-                        <h2>Contributors</h2>
-                        <h3>Miles Marsh</h3>
-                        <p>Contributions</p>
+                        <h2>Contributions</h2>
                         <ul>
                             <li>Solo Developer</li>
                             <li>All Assets</li>
@@ -422,9 +373,7 @@
                     <div>
                         <h2>Description</h2>
                         <p>This program is a showcase of coding practices and patterns. It is a simple canvas you can draw on that implements many features such as an undo and redo system, custom stickers that can be any text even emojis, different colors, and an export button that saves the current canvas as an image to your computer. The sticker sketchpad uses the command and observer patterns on a data driven tool pallete. It was also a practice in continuous deployment to a site using GitHub pages and actions.</p>
-                        <h2>Contributors</h2>
-                        <h3>Miles Marsh</h3>
-                        <p>Contributions</p>
+                        <h2>Contributions</h2>
                         <ul>
                             <li>Solo Developer</li>
                             <li>I created the html foundation to build the app</li>
@@ -478,9 +427,7 @@
                     <div>
                         <h2>Description</h2>
                         <p>The geocache program utilizes the leaflet map library to create a virtual geocaching game that is playable on mobile. The game will prompt for location services and when allowed will immediatly jump to your location and follow your device around. The caches are procedurally generated deterministically and you are only allowed to see the caches nearby. You can click on a cache to obtain a geocoin and click on another cache to deposit it. The game uses the flywieght, momento, and faceade patterns while also serializing a save state to local storage. The game will remember your progress and the state of the board.</p>
-                        <h2>Contributors</h2>
-                        <h3>Miles Marsh</h3>
-                        <p>Contributions</p>
+                        <h2>Contributions</h2>
                         <ul>
                             <li>Solo Developer</li>
                             <li>Implemented the leaflet library</li>
@@ -525,9 +472,7 @@
                     <div>
                         <h2>Description</h2>
                         <p>Archipelago is a third person action rogue like where you fight your way through flying islands to level up and beat the boss. You have access to a sword which allows you to dash incredible distances and you can unlock a bow which lets you grapple around. You can find treasure and enemies on your way to the end of the level. Stream the game to your friends on twitch and watch as they input commands to affect your run!</p>
-                        <h2>Contributors</h2>
-                        <h3>Miles Marsh</h3>
-                        <p>Contributions</p>
+                        <h2>Contributions</h2>
                         <ul>
                             <li>Managed team and deadlines</li>
                             <li>Initial brainstorming and designing</li>
@@ -536,32 +481,7 @@
                             <li>Combat programming</li>
                             <li>Puzzle designer</li>
                         </ul>
-                        <h3>Sean Rowley</h3>
-                        <p>Contributions</p>
-                        <ul>
-                            <li>Level Design</li>
-                            <li>Team Management</li>
-                            <li>User Interface and Menu design</li>
-                            <li>Twitch plugin integration</li>
-                            <li></li>
-                        </ul>
-                        <h3>Samuel Liao</h3>
-                        <p>Contributions</p>
-                        <ul>
-                            <li>Boss fight design and programming</li>
-                            <li>Menu design</li>
-                            <li>Localization and internationalization</li>
-                        </ul>
-                        <h3>Ewin Mathew</h3>
-                        <p>Contributions</p>
-                        <ul>
-                            <li>Sound Effects</li>
-                        </ul>
-                        <h3>Brandon Jack</h3>
-                        <p>Contributions</p>
-                        <ul>
-                            <li>3D modeling</li>
-                        </ul>
+                        
 
 
 

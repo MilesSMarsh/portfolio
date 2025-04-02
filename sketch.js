@@ -10,6 +10,7 @@
 const CANVASRATIO = 1/4;
 
 const VALUE2 = 2;
+const timeLimit = 30000
 
 // Globals
 let myInstance;
@@ -25,6 +26,9 @@ let date;
 let hours;
 let timeDisplay;
 let nowButton;
+let userActive = false;
+let timer;
+
 
 function resizeScreen() {
   centerHorz = canvasContainer.width() / 2; // Adjusted for drawing logic
@@ -66,12 +70,26 @@ function setup() {
   // Update the current slider value (each time you drag the slider handle)
   slider.oninput = function() {
     timePos = this.value;
+    userActive = true;
     updateTime();
-  }
 
-  timeDisplay = document.getElementById("time_display");
-  nowButton = document.getElementById("now_button").addEventListener("click",clickedNow);
-  updateTime();
+
+    clearTimeout(timer);
+
+    // Set a new timer
+    timer = setTimeout(() => {
+        // This code will execute if no click occurs within the time limit
+        userActive = false;
+        // Add here the actions to perform if the user doesn't click in time
+    }, timeLimit);
+
+    // Add here the actions to perform if the user clicks
+    userActive = true;
+    }
+
+    timeDisplay = document.getElementById("time_display");
+    nowButton = document.getElementById("now_button").addEventListener("click",clickedNow);
+    updateTime();
 
 }
 
@@ -131,6 +149,12 @@ function drawOnce(){
 
 // draw() function is called repeatedly, it's the main animation loop
 function draw() {
+    if(!userActive){
+        date = new Date();
+        hours = date.getHours() + date.getMinutes()/60;
+        timePos = hours/24 * 100;
+        updateTime()
+    }
     if(!initialized){
         drawOnce()
         initialized = false;
@@ -210,6 +234,6 @@ function clickedNow(){
     date = new Date();
     hours = date.getHours() + date.getMinutes()/60;
     timePos = hours/24 * 100;
+    userActive = false;
     updateTime()
-    console.log("updated time")
 }

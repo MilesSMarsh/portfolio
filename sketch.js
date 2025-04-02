@@ -2,11 +2,10 @@
 // Author: Miles Marsh
 // Date: 04/01/2025
 
-// Here is how you might set up an OOP p5.js project
-// Note that p5.js looks for a file called sketch.js
 
 // Constants - User-servicable parts
 // In a longer project I like to put these in a separate file
+
 const CANVASRATIO = 1/4;
 
 const VALUE2 = 2;
@@ -45,7 +44,8 @@ function resizeScreen() {
 
 // setup() function is called once when the program starts
 function setup() {
-
+    
+    fogHeight = 20
     sunSize = width/2;
 
     date = new Date();
@@ -89,7 +89,6 @@ function setup() {
     nowButton = document.getElementById("now_button").addEventListener("click",clickedNow);
     updateTime();
 
-    fogHeight = 20
     dawnColor = "#FEE7BB";
     dayColor = "#87CEEB";
     duskColor = "D8B4B4";
@@ -102,7 +101,7 @@ function setup() {
 // draw() function is called repeatedly, it's the main animation loop
 function draw() {
 
-    horizonHeight = canvasContainer.height()/2
+    horizonHeight = canvasContainer.height()/1.5
     if(!userActive){
         date = new Date();
         hours = date.getHours() + date.getMinutes()/60;
@@ -124,9 +123,11 @@ function draw() {
     drawPMMoon(timePos);
 
     //horizon fog
-    vertGradientRect(0, horizonHeight - fogHeight/2, width, fogHeight, skyColor, oceanColor, 150);
+    vertGradientRect(0, horizonHeight - fogHeight/2, width, fogHeight, skyColor, "#202080", 150);
     
-    // //create clouds
+    //create clouds
+
+
     // let noiseLevel = 255;
     // let noiseScale = 0.009;
     // let cloudHeight = horizonHeight/2;
@@ -315,6 +316,7 @@ function DrawSky(){
     let currentColor = TweenColors(startColor, endColor, percent);
     skyColor = currentColor;
     fill(currentColor);
+    //vertGradientRect(0, 0, width, horizonHeight + fogHeight/2, currentColor, oceanColor);
     rect(0, 0 , width, horizonHeight + fogHeight/2)
 
 }
@@ -322,3 +324,5 @@ function DrawSky(){
 const intToHex = (integer, length = 2) => {
     return integer.toString(16).padStart(length, '0');
   };
+
+

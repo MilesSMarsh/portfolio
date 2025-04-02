@@ -17,18 +17,23 @@ let myInstance;
 let canvasContainer;
 var centerHorz, centerVert;
 let seed = 1;
-let initialized = false;
 let timePos = 0;
 let horizonHeight;
 let sunSize;
-let skyColor;
+let dawnColor
+let dayColor;
+let duskcolor;
+let nightColor;
 let date;
 let hours;
 let timeDisplay;
 let nowButton;
 let userActive = false;
 let timer;
-
+let slider;
+let fogHeight;
+let oceanColor;
+let skyColor;
 
 function resizeScreen() {
   centerHorz = canvasContainer.width() / 2; // Adjusted for drawing logic
@@ -40,7 +45,6 @@ function resizeScreen() {
 
 // setup() function is called once when the program starts
 function setup() {
-    initialized = false;
 
     sunSize = width/2;
 
@@ -48,63 +52,71 @@ function setup() {
     hours = date.getHours() + date.getMinutes()/60;
     timePos = hours/24 * 100;
 
-  // place our canvas, making it fit our container
-  canvasContainer = $("#canvas_container");
-  let canvas = createCanvas(100, 100);
-  canvas.parent("canvas_container");
+    // place our canvas, making it fit our container
+    canvasContainer = $("#canvas_container");
+    let canvas = createCanvas(100, 100);
+    canvas.parent("canvas_container");
 
-  // resize canvas is the page is resized
-  $(window).resize(function() {
-    initialized = false;
+
+    // resize canvas is the page is resized
+    $(window).resize(function() {
+        resizeScreen();
+    });
     resizeScreen();
-  });
-  resizeScreen();
 
-  createButton("reimagine").mousePressed(() => seed++);
+    createButton("reimagine").mousePressed(() => seed++);
 
-  randomSeed(seed); // Seed the random number generator
+    randomSeed(seed); // Seed the random number generator
 
 
-  var slider = document.getElementById("myRange");
-  slider.value = timePos;
-  // Update the current slider value (each time you drag the slider handle)
-  slider.oninput = function() {
-    timePos = this.value;
-    userActive = true;
-    updateTime();
+    slider = document.getElementById("myRange");
+    slider.value = timePos;
+    // Update the current slider value (each time you drag the slider handle)
+    slider.oninput = function() {
+        timePos = this.value;
+        userActive = true;
+        updateTime();
 
 
-    clearTimeout(timer);
-
-    // Set a new timer
-    timer = setTimeout(() => {
-        // This code will execute if no click occurs within the time limit
-        userActive = false;
-        // Add here the actions to perform if the user doesn't click in time
-    }, timeLimit);
-
-    // Add here the actions to perform if the user clicks
-    userActive = true;
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            userActive = false;
+        }, timeLimit);
+        userActive = true;
     }
 
     timeDisplay = document.getElementById("time_display");
     nowButton = document.getElementById("now_button").addEventListener("click",clickedNow);
     updateTime();
 
+    fogHeight = 20
+    dawnColor = "#FEE7BB";
+    dayColor = "#87CEEB";
+    duskColor = "D8B4B4";
+    nightColor = "#220032";
+    skyColor = dayColor;
+    oceanColor = "#000080";
+
 }
 
-function drawOnce(){
-    //Only Draw Once
-  noStroke();
+// draw() function is called repeatedly, it's the main animation loop
+function draw() {
+
     horizonHeight = canvasContainer.height()/2
-    let fogHeight = 20
+    if(!userActive){
+        date = new Date();
+        hours = date.getHours() + date.getMinutes()/60;
+        timePos = hours/24 * 100;
+        slider.value = timePos;
+        updateTime()
+    }
+    noStroke();
 
     background(color(255, 255, 255));
 
     //create sky
     // vertGradientRect(0, 0, width, horizonHeight - fogHeight/2, 135, 206, 255, 200, 200, 250);
-    fill(color(135, 206, 255));
-    rect(0, 0 , width, horizonHeight + fogHeight/2)
+    DrawSky();
 
 
     drawSun(timePos);
@@ -112,7 +124,7 @@ function drawOnce(){
     drawPMMoon(timePos);
 
     //horizon fog
-    vertGradientRect(0, horizonHeight - fogHeight/2, width, fogHeight, 135, 206, 255, 0, 40, 128, 100);
+    vertGradientRect(0, horizonHeight - fogHeight/2, width, fogHeight, skyColor, oceanColor, 150);
     
     // //create clouds
     // let noiseLevel = 255;
@@ -143,63 +155,56 @@ function drawOnce(){
 
     //create Ocean
     // vertGradientRect(0, horizonHeight+fogHeight/2, width, height - horizonHeight, 0, 40, 128, 35, 206, 255);
-    fill(color(0, 40, 128))
+    fill(color(oceanColor))
     rect(0, horizonHeight+fogHeight/2, width, height - horizonHeight)
-}
-
-// draw() function is called repeatedly, it's the main animation loop
-function draw() {
-    if(!userActive){
-        date = new Date();
-        hours = date.getHours() + date.getMinutes()/60;
-        timePos = hours/24 * 100;
-        updateTime()
-    }
-    if(!initialized){
-        drawOnce()
-        initialized = false;
-    }
 
 }
 
 function drawSun(timePos){
-    fill(color('orange'))
+
+    noStroke()
+    fill(color('#FFA500'))
     let x = width*timePos/50 - width/2;
     let y = horizonHeight*Math.sin((((Math.PI)/width)* x + Math.PI)) + horizonHeight + sunSize/2;
     circle(x, y, sunSize);
-    noStroke()
+    fill(color("#FFD53064"));
+    circle(x, y, sunSize*2);
     fill(color("#FACADE"))
 }
 
 function drawPMMoon(timePos){
-    fill(color('grey'))
+
+    noStroke()
+    fill(color(200, 200, 200));
     let x = width*timePos/50 - 3*width/2;
     let y = horizonHeight*Math.sin((((Math.PI)/width)* x - Math.PI)) + horizonHeight + sunSize/2;
     circle(x, y, sunSize);
-    noStroke()
-    fill(color("#FACADE"))
+    fill(color(230, 230, 230, 100));
+    circle(x, y, sunSize*2);
+    fill(color("#FACADE"));
 }
 function drawAMMoon(timePos){
-    fill(color('grey'))
+
+    noStroke()
+    fill(color(200, 200, 200));
     let x = width*timePos/50 + width/2;
     let y = horizonHeight*Math.sin((((Math.PI)/width)* x - Math.PI)) + horizonHeight + sunSize/2;
     circle(x, y, sunSize);
-    noStroke()
+    fill(color(230, 230, 230, 100));
+    circle(x, y, sunSize*2);
     fill(color("#FACADE"))
 }
 
 //x: x position, y: y position, w: width, h: height, sr/sg/sb: starting rgb values, er/eg/eb: ending rgb values
-function vertGradientRect(x, y, w, h, sr, sg, sb, er, eg, eb, a = 1000){
+function vertGradientRect(x, y, w, h, start, end, a = 255){
 
-    noStroke()
-    let stepR = (er - sr)/h;
-    let stepG = (eg - sg)/h;
-    let stepB = (eb - sb)/h;
+    noStroke();
     for(l = 0; l < h; l += 1){
-        fill(color(sr + l*stepR, sg + l*stepG, sb + l*stepB, a));
+        let currentColor = TweenColors(start, end, l/h) + intToHex(a);
+        fill(color(currentColor));
         rect(x, y+l, w, 1);
     }
-    fill(color("#FACADE"))
+    fill(color("#FACADE"));
 }
 
 // mousePressed() function is called once after every time a mouse button is pressed
@@ -235,5 +240,85 @@ function clickedNow(){
     hours = date.getHours() + date.getMinutes()/60;
     timePos = hours/24 * 100;
     userActive = false;
+    slider.value = timePos;
     updateTime()
 }
+
+function TweenColors(start, end, perc){
+    //remove # from hex string 
+    start = start.replace("#", "");
+
+    //#xxx edge case
+    if (start.length === 3) {
+        start = start[0] + start[0] + start[1] + start[1] + start[2] + start[2];
+    }
+
+    // Parse the start value for red, green, and blue components
+    const r1 = parseInt(start.substring(0, 2), 16);
+    const g1 = parseInt(start.substring(2, 4), 16);
+    const b1 = parseInt(start.substring(4, 6), 16);
+
+    //remove # from hex string
+    end = end.replace("#", "");
+
+    //#xxx edge case 
+    if (end.length === 3) {
+        end = end[0] + end[0] + end[1] + end[1] + end[2] + end[2];
+    }
+
+    // Parse the end value for red, green, and blue components
+    const r2 = parseInt(end.substring(0, 2), 16);
+    const g2 = parseInt(end.substring(2, 4), 16);
+    const b2 = parseInt(end.substring(4, 6), 16);
+
+
+    //wheighted percents - I take the majority percent from the starting color. Percents must add up to 1
+    a1 = 1 - perc;
+    a2 = perc;
+
+    //the RGB values are averaged using their weighted percents
+    let tr = Math.round((r1 * a1 + r2 * a2) * (a1 + a2));
+
+    let tg = Math.round((g1 * a1 + g2 * a2) * (a1 + a2));
+
+    let tb = Math.round((b1 * a1 + b2 * a2) * (a1 + a2));
+
+
+    //reconverted into HEX
+    return "#"+intToHex(tr)+intToHex(tg)+intToHex(tb)
+
+}
+
+function DrawSky(){
+    let startColor;
+    let endColor;
+    let percent;
+    if(timePos < 25){
+        startColor = nightColor;
+        endColor = dawnColor;
+    }else if(timePos < 50){
+        startColor=dawnColor;
+        endColor=dayColor;
+    }else if(timePos < 75){
+        startColor=dayColor;
+        endColor=duskColor;
+    }else if(timePos < 100){
+        startColor=duskColor;
+        endColor=nightColor;
+    }else{
+        startColor = nightColor;
+        endColor = nightColor;
+    }
+
+
+    percent = ((timePos)%25)/25;
+    let currentColor = TweenColors(startColor, endColor, percent);
+    skyColor = currentColor;
+    fill(currentColor);
+    rect(0, 0 , width, horizonHeight + fogHeight/2)
+
+}
+
+const intToHex = (integer, length = 2) => {
+    return integer.toString(16).padStart(length, '0');
+  };

@@ -23,6 +23,8 @@ let sunSize;
 let skyColor;
 let date;
 let hours;
+let timeDisplay;
+let nowButton;
 
 function resizeScreen() {
   centerHorz = canvasContainer.width() / 2; // Adjusted for drawing logic
@@ -35,6 +37,8 @@ function resizeScreen() {
 // setup() function is called once when the program starts
 function setup() {
     initialized = false;
+
+    sunSize = width/2;
 
     date = new Date();
     hours = date.getHours() + date.getMinutes()/60;
@@ -56,16 +60,18 @@ function setup() {
 
   randomSeed(seed); // Seed the random number generator
 
-  sunSize = height/6;
 
   var slider = document.getElementById("myRange");
   slider.value = timePos;
   // Update the current slider value (each time you drag the slider handle)
   slider.oninput = function() {
     timePos = this.value;
-
+    updateTime();
   }
-  console.log(hours)
+
+  timeDisplay = document.getElementById("time_display");
+  nowButton = document.getElementById("now_button").addEventListener("click",clickedNow);
+  updateTime();
 
 }
 
@@ -175,4 +181,35 @@ function vertGradientRect(x, y, w, h, sr, sg, sb, er, eg, eb, a = 1000){
 // mousePressed() function is called once after every time a mouse button is pressed
 function mousePressed() {
     // code to run when mouse is pressed
+}
+
+function updateTime(){
+    let virtualTime = timePos/100 *24
+    let virtualHours = Math.floor(virtualTime)
+    let virtualMinutes = Math.round((virtualTime-virtualHours) * 60)
+    if(virtualHours < 10){
+        if(virtualMinutes < 10){
+            timeDisplay.innerHTML = "Time: 0"+virtualHours+":0"+virtualMinutes;
+        }
+        else{
+            timeDisplay.innerHTML = "Time: 0"+virtualHours+":"+virtualMinutes;
+        }
+    }
+    else{
+        if(virtualMinutes < 10){
+            timeDisplay.innerHTML = "Time: "+virtualHours+":0"+virtualMinutes;
+        }
+        else{
+            timeDisplay.innerHTML = "Time: "+virtualHours+":"+virtualMinutes;
+        }
+    }
+
+}
+
+function clickedNow(){
+    date = new Date();
+    hours = date.getHours() + date.getMinutes()/60;
+    timePos = hours/24 * 100;
+    updateTime()
+    console.log("updated time")
 }

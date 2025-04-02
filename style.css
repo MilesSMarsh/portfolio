@@ -194,6 +194,7 @@ footer {
     text-decoration: none;
     border:1mm solid #888;
     background-color: #555;
+    cursor: pointer;
   }
 
   .time_display{

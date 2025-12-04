@@ -1,549 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
-<link rel="stylesheet" href="style.css">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Miles Marsh</title>
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.js"></script>
-
-    <script type="module" src="objects.js"></script>
-    <script type="text/javascript" src="main.js"></script>
-    <script type="text/javascript" src="sketch.js" DEFER></script>
-
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <h1>Miles Marsh</h1>
-    </header>
+<!-- Navigation -->
+<nav class="top-nav">
+    <div class="nav-left">
+        <a href="index.html">Home</a>
 
-    <div class="navbar">
-        <a href="https://github.com/MilesSMarsh">GitHub</a>
-        <a href="https://kingmeelo.itch.io/">Itch.io</a>
-        <a href="https://www.linkedin.com/in/miles-marsh-32b7842a1/">LinkedIn</a>
-    </div>
-
-    <div class="canvas_container">
-        <div id="canvas_container">
-        <!-- where the canvas is -->
-        </div>
-        <div class="time_info_container">
-            <div>
-                <a class="time_display" id="time_display">Time: 00:00</a>
-                <button class="now_button" id="now_button">Now</button>
-            </div>
-            <div  class="slide_container">
-                <input type="range" min="1" max="100" value="0" step="0.5" class="slider" id="myRange">
+        <div class="dropdown">
+            <button>Projects ▼</button>
+            <div id="projectDropdown" class="dropdown-content">
+                <!-- AUTO-GENERATED PROJECT LINKS HERE -->
             </div>
         </div>
     </div>
-    
-    
 
-    <section id="games">
-        <h2>Games</h2>
-    
-        <button class="collapsible" onclick="showSlides(1,0)">Runeomancy</button>
-        <div class="content">
-            <div class="game">
-                <div class="slideshow-container">
-    
-                    <!-- Full-width images with number and caption text -->
-                    <div class="runeomancy fade">
-                        <img src="./assets/runeomancy1.png" style="width:100%">
-                    </div>
-                    
-                    <div class="runeomancy fade">
-                        <img src="./assets/runeomancy2.png" style="width:100%">
-                    </div>
-                    
-                    <div class="runeomancy fade">
-                        <img src="./assets/runeomancy3.png" style="width:100%">
-                    </div>
+    <div class="nav-center">
+        <strong>Miles Marsh</strong>
+    </div>
 
-                    <!-- <div class="runeomancy fade">
-                        <video width="640" height="480" style="margin:10px" controls>
-                            <source src="./assets/runeomancyVid.webm" type="video/mp4">
-                            Your browser does not support the video tag.
-                            </video>
-                        </div> -->
-                    
-                    <!-- Next and previous buttons -->
-                    <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
-                    <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
-                    </div>
-                    <div>
-                        <h2>Description</h2>
-                        <p>Runeomancy is a game demo of a spell system that involves scrybing runes in specific orders to cast spells. The demo is set in a small puzzle platformer level where you can cast each spell to solve different puzzles.</p>
-                        <h2>Contributions</h2>
-                        <ul>
-                            <li>Created the spell casting system</li>
-                            <li>Created the spell interactions</li>
-                            <li>Created the player controller</li>
-                            <li>Implemented physics system in game</li>
-                            <li>Assisted in asset ideation and creation</li>
-                            <li>Assisted in level design</li>
-                        </ul>
+    <div class="nav-right">
+        <a href="mailto:marshmiles7@gmail.com" class="social-btn">Email</a>
+        <a href="https://github.com/MilesSMarsh" target="_blank" class="social-btn">GitHub</a>
+        <a href="https://www.linkedin.com/in/milesmarsh/" target="_blank" class="social-btn">LinkedIn</a>
+    </div>
+</nav>
 
-                        <h2>GitHub</h2>
-                        <a href="https://github.com/sarowley/rune_game" target = "_blank" rel="noopener noreferer" style="color:#333">Source Code</a>
-                        
-                        <br>
-                        <a href="https://sarowley.github.io/rune_game/" target = "_blank" rel="noopener noreferer" style="color:#333">Playable</a>
-                    </div>
-                </div>
+
+
+<!-- Main Intro -->
+<div class="project-container" style="animation: fadeIn 0.6s;">
+    <h1 class="project-title">Welcome to My Portfolio</h1>
+
+    <p style="font-size:18px; line-height:1.6;">
+        I am a passionate <strong>Game Designer and Developer</strong> specializing in
+        <span style="color:var(--accent-green);">Unity</span>,
+        <span style="color:var(--accent-green);">Unreal Engine</span>,
+        and <span style="color:var(--accent-green);">Game Systems Design</span>. I specifically like designing 
+        combat in games.
+    </p>
+
+    <div class="project-section" style="margin-top:40px;">
+        <h2 style="color:var(--accent-green); margin-top:0;">Explore My Work</h2>
+        <div id="projectCards" class="project-cards">
+            <!-- Project cards will be dynamically inserted here -->
         </div>
+    </div>
 
-        <button class="collapsible" onclick="showSlides(1,1)">Rear Window</button>
-        <div class="content">
-            <div class="game">
-                <div class="slideshow-container">
-    
-                    <!-- Full-width images with number and caption text -->
-                    <div class="rearwindow fade">
-                        <img src="./assets/rearWindow1.png" style="width:100%">
-                    </div>
-                    
-                    <div class="rearwindow fade">
-                        <img src="./assets/rearWindow2.png" style="width:100%">
-                    </div>
-                    
-                    <div class="rearwindow fade">
-                        <img src="./assets/rearWindow3.png" style="width:100%">
-                    </div>
-
-                    <div class="rearwindow fade">
-                        <img src="./assets/rearWindow4.png" style="width:100%">
-                    </div>
-
-                    <!-- <div class="rearwindow fade">
-                        <video width="640" height="480" style="margin:10px" controls>
-                            <source src="./assets/rearWindowVid.webm" type="video/mp4">
-                            Your browser does not support the video tag.
-                            </video>
-                        </div> -->
-
-                    
-                    <!-- Next and previous buttons -->
-                    <a class="prev" onclick="plusSlides(-1, 1)">&#10094;</a>
-                    <a class="next" onclick="plusSlides(1, 1)">&#10095;</a>
-                    </div>
-                    <div>
-                        <h2>Description</h2>
-                        <p>Rear Window is a game based off of Alfred Hitchcock's "Rear Window". It is an eye spy game that loosely follows the events of the movie. You can view the scene outside your window and take photos of events that are happening. Once you find all the events of the day it will progress to the next scene. Within the game is a Wave Function Collapse demo that generates houses similar to the ones in the game. Both the game and the WFC demo were implemented in phaser3 and use a custom tile set made in Aseprite and Tiled.</p>
-                        <h2>Contributions</h2>
-                        <ul>
-                            <li>Lead Artist</li>
-                            <li>Created Tile Set</li>
-                            <li>Created scenes to interact with</li>
-                            <li>Created animations</li>
-                            <li>Event scripting</li>
-                            <li>Programmed the WFC Demo</li>
-                        </ul>
-
-                        <h2>GitHub</h2>
-                        <a href="https://github.com/MilesSMarsh/RearWindowGame" target = "_blank" rel="noopener noreferer" style="color:#333">Source Code</a>
-                        
-                        <br>
-                        <a href="https://milessmarsh.github.io/RearWindowGame/" target = "_blank" rel="noopener noreferer" style="color:#333">Playable</a>
-                    </div>
+    <div class="about-me-section">
+        <div class="about-me-container">
+            <div class="about-me-image">
+                <img src="assets/Miles.jpg" alt="Miles Marsh">
+            </div>
+            <div class="about-me-text">
+                <h2 style="color:var(--accent-green); margin-top:0;">About Me</h2>
+                <p>
+                    Hi! I'm Miles, a passionate Game Designer and Developer specializing in Unity, Unreal Engine,
+                    and Game Systems Design. I enjoy crafting engaging combat systems and immersive gameplay experiences.
+                </p>
+                <p>
+                    My goal is to create games that are fun, challenging, and memorable for players. I enjoy working on both
+                    the design and development side of games, combining creative ideas with practical technical skills.
+                </p>
             </div>
         </div>
-
-        <button class="collapsible" onclick="showSlides(1,2)">Time Rewind Platformer</button>
-        <div class="content">
-            <div class="game">
-                <div class="slideshow-container">
+    </div>
     
-                    <div class="rewindplatformer fade">
-                        <img src="./assets/rewindPlatformer1.png" style="width:100%">
-                        
-                    </div>
-                    
-                    <div class="rewindplatformer fade">
-                        <img src="./assets/rewindPlatformer2.png" style="width:100%">
-                    </div>
-                    
-
-                    <!-- <div class="rewindplatformer fade">
-                        <video width="640" height="480" style="margin:10px" controls>
-                            <source src="./assets/rewindPlatformerVid.webm" type="video/mp4">
-                            Your browser does not support the video tag.
-                            </video>
-                        </div> -->
-                        
-                    <a class="prev" onclick="plusSlides(-1, 2)">&#10094;</a>
-                    <a class="next" onclick="plusSlides(1, 2)">&#10095;</a>
-                    </div>
-                    <div>
-                        <h2>Description</h2>
-                        <p>Time Rewind Platformer is a quick proof of concept of implementing a time manipulation system within the Bevy game engine. Within the game you control the white square which is able to move back and forth and jump. You can knock into other squares and push them around, however you are able to completely reverse time all the way back to where you began for all objects. Not only that but you are able to manipulate time locally for just the player or for just the objects. All of this was made with Bevy utilizing the Bevy Rapier physics crate. The entire game is compileable to WASM using trunk and playable on the browser.</p>
-                        <h2>Contributions</h2>
-                        <ul>
-                            <li>Solo developer</li>
-                            <li>Integrated the Bevy Rapier physics engine</li>
-                            <li>Created the entity components for storing past</li>
-                            <li>Created systems for rewinding the past</li>
-                            <li>Level Design</li>
-                            <li>Implemented WASM compile</li>
-                        </ul>
-                        <h2>GitHub</h2>
-                        <a href="https://github.com/MilesSMarsh/rewind_platformer" target = "_blank" rel="noopener noreferer" style="color:#333">Source Code</a>
-                        
-                        <br>
-                        <h2>Itch.io</h2>
-                        <a href="https://kingmeelo.itch.io/rewind-platformer" target = "_blank" rel="noopener noreferer" style="color:#333">Playable</a></div>
-            </div>
-        </div>
-        
-        <button class="collapsible" onclick="showSlides(1,3)">Guarden</button>
-        <div class="content">
-            <div class="game">
-                <div class="slideshow-container">
     
-                    <div class="guarden fade">
-                        <img src="./assets/guarden1.png" style="width:100%">
-                        
-                    </div>
-                    
-                    <div class="guarden fade">
-                        <img src="./assets/guarden2.png" style="width:100%">
-                    </div>
-
-                    <div class="guarden fade">
-                        <img src="./assets/guarden3.png" style="width:100%">
-                    </div>
-
-                    <div class="guarden fade">
-                        <img src="./assets/guarden4.png" style="width:100%">
-                    </div>
-                    
-
-                    <!-- <div class="guarden fade">
-                        <video width="640" height="280" style="margin:10px" controls>
-                            <source src="./assets/guardenVid.webm" type="video/mp4">
-                            Your browser does not support the video tag.
-                            </video>
-                        </div> -->
-                        
-                    <a class="prev" onclick="plusSlides(-1, 3)">&#10094;</a>
-                    <a class="next" onclick="plusSlides(1, 3)">&#10095;</a>
-                    </div>
-                    <div>
-                        <h2>Description</h2>
-                        <p>Guarden is a wave defense garden sim where you fend off critters and grow upgrades. You start with a shovel but you can choose between a rake and two trowles as weapons as well. You begin the wave by going out the gate to your garden which transports you to a new scene where you can attack pests. Once all enemies are killed you can return to your garden to change weapon or harvest plants. However, plants take a few rounds to grow so you have to spend some time defending before you can harvest. The entire game was programmed in Phaser 3.</p>
-                        <h2>Contributions</h2>
-                        <ul>
-                            <li>Created Character Controller</li>
-                            <li>Created weapon system</li>
-                            <li>Created game state saving</li>
-                            <li>Created hitbox implementation</li>
-                            <li>Implemented Interaction with enemies and combat</li>
-                            <li>Implemented Interaction with game objects</li>
-                        </ul>
-                        <h2>GitHub</h2>
-                        <a href="https://github.com/MilesSMarsh/Guarden" target = "_blank" rel="noopener noreferer" style="color:#333">Source Code</a>
-                        
-                        <br>
-                        <a href="https://milessmarsh.github.io/Guarden/" target = "_blank" rel="noopener noreferer" style="color:#333">Playable</a></div>
-            </div>
-        </div>
-
-        <button class="collapsible" onclick="showSlides(1,4)">Endless Runner</button>
-        <div class="content">
-            <div class="game">
-                <div class="slideshow-container">
-    
-                    <div class="runner fade">
-                        <img src="./assets/endlessRunner1.png" style="width:100%">
-                        
-                    </div>
-                    
-                    <div class="runner fade">
-                        <img src="./assets/endlessRunner2.png" style="width:100%">
-                    </div>
-
-                    <div class="runner fade">
-                        <img src="./assets/endlessRunner3.png" style="width:100%">
-                    </div>
-
-                    
-
-                    <!-- <div class="runner fade">
-                        <video width="640" height="480" style="margin:10px" controls>
-                            <source src="./assets/endlessRunnerVid.webm" type="video/mp4">
-                            Your browser does not support the video tag.
-                            </video>
-                        </div> -->
-                        
-                    <a class="prev" onclick="plusSlides(-1, 4)">&#10094;</a>
-                    <a class="next" onclick="plusSlides(1, 4)">&#10095;</a>
-                    </div>
-                    <div>
-                        <h2>Description</h2>
-                        <p>Bram is an endless runner where you have projectiles trailing behind you that you can fire forward. You can cycle through which projectile you want to fire so you can match the projectiles color with the enemies color. Each color has it's own effect and you cant get hit by the enemies. The more enemies you hit the more you points you get and it goes on forever. I made this game entirely in phaser3.</p>
-                        <h2>Contributions</h2>
-                        <ul>
-                            <li>Solo developer</li>
-                            <li>Created projectile cycling system</li>
-                            <li>Created projectile trailing system</li>
-                            <li>All visual asset work</li>
-                            <li>Created enemy and projectile interaction</li>
-
-                        </ul>
-                        <h2>GitHub</h2>
-                        <a href="https://github.com/MilesSMarsh/EndlessRunner" target = "_blank" rel="noopener noreferer" style="color:#333">Source Code</a>
-                        
-                        <br>
-                        <a href="https://milessmarsh.github.io/EndlessRunner/" target = "_blank" rel="noopener noreferer" style="color:#333">Playable</a></div>
-            </div>
-        </div>
-
-        
-        <button class="collapsible" onclick="showSlides(1,5)">Shoot Game</button>
-        <div class="content">
-            <div class="game">
-                <div class="slideshow-container">
-    
-                    <div class="shootgame fade">
-                        <img src="./assets/shootGame1.png" style="width:100%">
-                        
-                    </div>
-                    <div class="shootgame fade">
-                        <img src="./assets/shootGame2.png" style="width:100%">
-                        
-                    </div>
-                    <div class="shootgame fade">
-                        <img src="./assets/shootGame3.png" style="width:100%">
-                        
-                    </div>
-
-                    <div class="shootgame fade">
-                        <video width="640" height="280" style="margin:10px" controls>
-                            <source src="./assets/shootGameVideo.webm" type="video/mp4">
-                            Your browser does not support the video tag.
-                            </video>
-                    </div>
-                        
-                    <a class="prev" onclick="plusSlides(-1, 5)">&#10094;</a>
-                    <a class="next" onclick="plusSlides(1, 5)">&#10095;</a>
-                    </div>
-                    <div>
-                        <h2>Description</h2>
-                        <p>One button game was the theme to this game. Given only one button there are only a few ways to add depth to your game, time being one of them. The gameplay I wanted to explore was the patience to reload your gun versus shooting the oncoming enemies. If you wait for your revolver to fully load you will begin to load a shotgun which is short ranged but will pass through enemies. This game was made in the crisp game engine which is a light weight javascript engine that specializes in simple games.</p>
-                        <h2>Contributions</h2>
-                        <ul>
-                            <li>Solo Developer</li>
-                            <li>All Assets</li>
-                            <li>Reloading Mechanic</li>
-                            <li>implemented enemy spawing and interaction</li>
-                        </ul>
-                        <h2>GitHub</h2>
-                        <a href="" target = "_blank" rel="noopener noreferer" style="color:#333">Source Code</a>
-                        
-                        <br>
-                        <a href="https://kingmeelo.itch.io/shoot-game" target = "_blank" rel="noopener noreferer" style="color:#333">Playable</a></div>
-            </div>
-        </div>
-
-        <button class="collapsible" onclick="showSlides(1,6)">Sticker Sketchpad</button>
-        <div class="content">
-            <div class="game">
-                <div class="slideshow-container">
-    
-                    <div class="sticker fade">
-                        <img src="./assets/stickerSketchpad1.png" style="width:100%">
-                        
-                    </div>
-                    <div class="sticker fade">
-                        <img src="./assets/stickerSketchpad2.png" style="width:100%">
-                        
-                    </div>
-                    <div class="sticker fade">
-                        <img src="./assets/stickerSketchpad3.png" style="width:100%">
-                        
-                    </div>
-                    <div class="sticker fade">
-                        <img src="./assets/stickerSketchpadExport.png" style="width:100%">
-                        
-                    </div>
-                    
-
-                    <!-- <div class="shootgame fade">
-                        <video width="640" height="280" style="margin:10px" controls>
-                            <source src="./assets/shootGameVid.webm" type="video/mp4">
-                            Your browser does not support the video tag.
-                            </video>
-                        </div> -->
-                        
-                    <a class="prev" onclick="plusSlides(-1, 6)">&#10094;</a>
-                    <a class="next" onclick="plusSlides(1, 6)">&#10095;</a>
-                    </div>
-                    <div>
-                        <h2>Description</h2>
-                        <p>This program is a showcase of coding practices and patterns. It is a simple canvas you can draw on that implements many features such as an undo and redo system, custom stickers that can be any text even emojis, different colors, and an export button that saves the current canvas as an image to your computer. The sticker sketchpad uses the command and observer patterns on a data driven tool pallete. It was also a practice in continuous deployment to a site using GitHub pages and actions.</p>
-                        <h2>Contributions</h2>
-                        <ul>
-                            <li>Solo Developer</li>
-                            <li>I created the html foundation to build the app</li>
-                            <li>I programmed in typescript to create html elements dynamically</li>
-                            <li>I implemented the data driven sticker system that creates custom buttons </li>
-                        </ul>
-                        <h2>GitHub</h2>
-                        <a href="https://github.com/MilesSMarsh/cmpm-121-demo-2" target = "_blank" rel="noopener noreferer" style="color:#333">Source Code</a>
-                        
-                        <br>
-                        <a href="https://milessmarsh.github.io/cmpm-121-demo-2/" target = "_blank" rel="noopener noreferer" style="color:#333">Playable</a></div>
-            </div>
-        </div>
-
-        <button class="collapsible" onclick="showSlides(1,7)">Geocache</button>
-        <div class="content">
-            <div class="game">
-                <div class="slideshow-container">
-    
-                    <div class="geocache fade">
-                        <img src="./assets/geocache1.png" style="width:100%">
-                        
-                    </div>
-                    <div class="geocache fade">
-                        <img src="./assets/geocache2.png" style="width:100%">
-                        
-                    </div>
-                    <div class="geocache fade">
-                        <img src="./assets/geocache3.png" style="width:100%">
-                        
-                    </div>
-                    <div class="geocache fade">
-                        <img src="./assets/geocache4.png" style="width:100%">
-                        
-                    </div>
-                    <div class="geocache fade">
-                        <img src="./assets/geocache5.png" style="width:100%">
-                        
-                    </div>
-
-                    <!-- <div class="shootgame fade">
-                        <video width="640" height="280" style="margin:10px" controls>
-                            <source src="./assets/shootGameVid.webm" type="video/mp4">
-                            Your browser does not support the video tag.
-                            </video>
-                        </div> -->
-                        
-                    <a class="prev" onclick="plusSlides(-1, 7)">&#10094;</a>
-                    <a class="next" onclick="plusSlides(1, 7)">&#10095;</a>
-                    </div>
-                    <div>
-                        <h2>Description</h2>
-                        <p>The geocache program utilizes the leaflet map library to create a virtual geocaching game that is playable on mobile. The game will prompt for location services and when allowed will immediatly jump to your location and follow your device around. The caches are procedurally generated deterministically and you are only allowed to see the caches nearby. You can click on a cache to obtain a geocoin and click on another cache to deposit it. The game uses the flywieght, momento, and faceade patterns while also serializing a save state to local storage. The game will remember your progress and the state of the board.</p>
-                        <h2>Contributions</h2>
-                        <ul>
-                            <li>Solo Developer</li>
-                            <li>Implemented the leaflet library</li>
-                            <li>Created a flyweight system</li>
-                            <li>Created momento system to store data to local stoarage through JSON serializing</li>
-                            <li>Created coin gathering and depositing interface and system</li>
-                            <li>Made the game playable on mobile</li>
-                        </ul>
-                        <h2>GitHub</h2>
-                        <a href="https://github.com/MilesSMarsh/cmpm-121-demo-3" target = "_blank" rel="noopener noreferer" style="color:#333">Source Code</a>
-                        
-                        <br>
-                        <a href="https://milessmarsh.github.io/cmpm-121-demo-3" target = "_blank" rel="noopener noreferer" style="color:#333">Playable</a></div>
-            </div>
-        </div>
-
-        <button class="collapsible" onclick="showSlides(1,8)">Archipelago</button>
-        <div class="content">
-            <div class="game">
-                <div class="slideshow-container">
-    
-                    <div class="archipelago fade">
-                        <img src="./assets/Arch1.jpg" style="width:100%">
-                    </div>
-                    <div class="archipelago fade">
-                        <img src="./assets/Arch2.jpg" style="width:100%">
-                    </div>
-                    <div class="archipelago fade">
-                        <img src="./assets/Arch3.jpg" style="width:100%">
-                    </div>
-
-                    <div class="archipelago fade">
-                        <video width="640" height="280" style="margin:10px" controls>
-                            <source src="./assets/ArchVideo.webm" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                        
-                    <a class="prev" onclick="plusSlides(-1, 8)">&#10094;</a>
-                    <a class="next" onclick="plusSlides(1, 8)">&#10095;</a>
-                    </div>
-                    <div>
-                        <h2>Description</h2>
-                        <p>Archipelago is a third person action rogue like where you fight your way through flying islands to level up and beat the boss. You have access to a sword which allows you to dash incredible distances and you can unlock a bow which lets you grapple around. You can find treasure and enemies on your way to the end of the level. Stream the game to your friends on twitch and watch as they input commands to affect your run!</p>
-                        <h2>Contributions</h2>
-                        <ul>
-                            <li>Managed team and deadlines</li>
-                            <li>Initial brainstorming and designing</li>
-                            <li>Enemy Ai and movement</li>
-                            <li>Gameplay loop ideation and implementation</li>
-                            <li>Combat programming</li>
-                            <li>Puzzle designer</li>
-                        </ul>
-                        
-
-
-
-
-                        <h2>Steam</h2>
-                        
-                        <a href="https://store.steampowered.com/app/2952580/Archipelago/" target = "_blank" rel="noopener noreferer" style="color:#333">Playable</a></div>
-            </div>
-        </div>
-
-
-    </section>
-
-    <section id="about">
-        <h2>About Me</h2>
-        <p>I am a game developer graduated from the University of California Santa Cruz, with a degree in Computer Science and Computer Game Design BS. I have experience in making both digital and physical games alike, however my primary interest is in digital games. I have experience in C, C++, Javascript/Typescript, Rust, and Python. The main game engines I have experience with are Unreal Engine 5, Unity, and Phaser3. I enjoy learning new ways to implement game systems and coming up with creative solutions. 
-        </p>
-    </section>
-
-
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: marshmiles7@gmail.com</p>
-        <p>Linkedin: Miles Marsh</p>
-
-    </section>
-
+</div>
 
 <script>
-var coll = document.getElementsByClassName("collapsible");
-var i;
+// AUTO-GENERATE DROPDOWN FROM JSON
+fetch("projects.json")
+    .then(res => res.json())
+    .then(data => {
+        const dropdown = document.getElementById("projectDropdown");
+        dropdown.innerHTML = ""; // Clear existing items
 
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.maxHeight){
-      content.style.maxHeight = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-    } 
-  });
-}
+        Object.keys(data).forEach(key => {
+            const project = data[key];
+
+            const link = document.createElement("a");
+            link.href = `project.html?id=${key}`;
+            link.innerText = project.title;
+
+            dropdown.appendChild(link);
+        });
+
+        // DYNAMIC PROJECT CARDS
+        const cardsContainer = document.getElementById("projectCards");
+        cardsContainer.innerHTML = ""; // clear previous content
+
+        Object.keys(data).forEach(key => {
+            const project = data[key];
+
+            const card = document.createElement("a");
+            card.href = `project.html?id=${key}`;
+            card.className = "project-card";
+
+            card.innerHTML = `
+                <img src="${project.titleImage}" alt="${project.title}">
+                <h3>${project.title}</h3>
+            `;
+
+            cardsContainer.appendChild(card);
+        });
+    });
+
+
 </script>
 
-
-    <footer>
-        <p>&copy; 2025 Miles Marsh. All rights reserved.</p>
-    </footer>
+<footer class="site-footer">
+    <p>&copy; 2025 Miles Marsh. All Rights Reserved.</p>
+</footer>
 
 </body>
 </html>

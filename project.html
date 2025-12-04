@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="top-nav">
+    <div class="nav-left">
+        <a href="index.html">Home</a>
+
+        <div class="dropdown">
+            <button>Projects ▼</button>
+            <div id="projectDropdown" class="dropdown-content">
+                <!-- AUTO-GENERATED PROJECT LINKS HERE -->
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-center">
+        <strong>Miles Marsh</strong>
+    </div>
+
+    <div class="nav-right">
+        <a href="mailto:marshmiles7@gmail.com" class="social-btn">Email</a>
+        <a href="https://github.com/MilesSMarsh" target="_blank" class="social-btn">GitHub</a>
+        <a href="https://www.linkedin.com/in/milesmarsh/" target="_blank" class="social-btn">LinkedIn</a>
+    </div>
+</nav>
+
+
+<!-- Main Project Container -->
+<div class="project-container" style="animation: fadeIn 0.7s;">
+    <h1 id="title" class="project-title">Loading...</h1>
+
+    <img id="titleImage" class="project-image" src="" alt="Project Image" style="animation: fadeIn 1s;">
+
+    <div class="project-section">
+        <h2 style="color:var(--accent-green); margin-top:0;">Description</h2>
+        <p id="description"></p>
+    </div>
+
+    <div class="project-section">
+        <h2 style="color:var(--accent-green); margin-top:0;">Skills Used</h2>
+        <div id="skills" class="skills"></div>
+    </div>
+
+    <div id="linkDiv" class="project-section">
+        <h2 style="color:var(--accent-green); margin-top:0;">Playable Link</h2>
+        <div id="link"></div>
+    </div>
+
+    <div class="project-section" id="moreMediaSection">
+        <h2 style="color:var(--accent-green); margin-top:0;">More Media</h2>
+        <div class="media-carousel">
+            <button id="prevMedia" class="media-btn">&larr;</button>
+            <div id="mediaDisplay" class="media-display">
+                <!-- Media (image/video) will appear here -->
+            </div>
+            <button id="nextMedia" class="media-btn">&rarr;</button>
+        </div>
+    </div>
+    
+</div>
+
+<script>
+// GET ID FROM URL
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+// LOAD PROJECTS.JSON
+fetch("projects.json")
+    .then(res => res.json())
+    .then(data => {
+
+        /* ===============================
+           GENERATE DROPDOWN MENU
+        ================================= */
+        const dropdown = document.getElementById("projectDropdown");
+        dropdown.innerHTML = "";
+
+        Object.keys(data).forEach(key => {
+            const project = data[key];
+
+            const link = document.createElement("a");
+            link.href = `project.html?id=${key}`;
+            link.innerText = project.title;
+            dropdown.appendChild(link);
+        });
+
+        /* ===============================
+           LOAD SELECTED PROJECT DETAILS
+        ================================= */
+        const p = data[id];
+
+        if (!p) {
+            document.querySelector("#title").innerText = "Project Not Found";
+            document.querySelector("#description").innerText =
+                "The project ID does not match any entry in projects.json.";
+            return;
+        }
+
+        document.querySelector("#title").innerText = p.title;
+        document.querySelector("#description").innerText = p.description;
+        document.querySelector("#titleImage").src = p.titleImage;
+
+        const linkDiv = document.querySelector("#linkDiv");
+        const linkContainer = document.querySelector("#link");
+        if(p.link){
+            const a = document.createElement("a");
+            a.href = p.link;
+            a.innerText = "Play Now";
+            a.target = "_blank";
+            a.className = "play-button"; // optional, style in CSS
+            linkContainer.appendChild(a);
+        } else {
+            // Hide the entire div if no link
+            linkDiv.style.display = "none";
+        }
+
+        const skillsContainer = document.querySelector("#skills");
+        skillsContainer.innerHTML = "";
+
+        p.skills.forEach(skill => {
+            const tag = document.createElement("div");
+            tag.className = "skill-tag";
+            tag.innerText = skill;
+            skillsContainer.appendChild(tag);
+        });
+
+
+        const mediaDisplay = document.getElementById("mediaDisplay");
+        const prevBtn = document.getElementById("prevMedia");
+        const nextBtn = document.getElementById("nextMedia");
+
+        let mediaIndex = 0;
+        let mediaList = p.media || []; // p = selected project object
+
+        function showMedia(index) {
+            mediaDisplay.innerHTML = ""; // clear previous media
+            if (mediaList.length === 0) {
+                document.getElementById("moreMediaSection").style.display = "none";
+                return;
+            }
+
+            const item = mediaList[index];
+
+            let element;
+            if (item.type === "image") {
+                element = document.createElement("img");
+                element.src = item.src;
+                element.alt = item.alt || "";
+            } else if (item.type === "video") {
+                element = document.createElement("video");
+                element.src = item.src;
+                element.controls = true;
+                element.poster = item.poster || "";
+            }
+
+            mediaDisplay.appendChild(element);
+        }
+
+        // Button event listeners
+        prevBtn.addEventListener("click", () => {
+            mediaIndex = (mediaIndex - 1 + mediaList.length) % mediaList.length;
+            showMedia(mediaIndex);
+        });
+
+        nextBtn.addEventListener("click", () => {
+            mediaIndex = (mediaIndex + 1) % mediaList.length;
+            showMedia(mediaIndex);
+        });
+
+        // Initial display
+        showMedia(mediaIndex);
+
+
+        // const mediaContainer = document.getElementById("mediaContainer");
+        // mediaContainer.innerHTML = "";
+
+        // if (p.media && p.media.length > 0) {
+        //     p.media.forEach(item => {
+        //         let element;
+        //         if (item.type === "image") {
+        //             element = document.createElement("img");
+        //             element.src = item.src;
+        //             element.alt = item.alt || "";
+        //             element.className = "project-media";
+        //         } else if (item.type === "video") {
+        //             element = document.createElement("video");
+        //             element.src = item.src;
+        //             element.controls = true;
+        //             element.poster = item.poster || "";
+        //             element.className = "project-media";
+        //         }
+        //         mediaContainer.appendChild(element);
+        //     });
+        // } else {
+        //     mediaContainer.style.display = "none"; // hide section if no media
+        // }
+
+    });
+</script>
+
+<footer class="site-footer">
+    <p>&copy; 2025 Miles Marsh. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

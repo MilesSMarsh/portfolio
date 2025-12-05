@@ -1,7 +1,7 @@
 {
     "Archipelago": {
         "title": "Archipelago",
-        "titleImage": "assets/Archipelago/Arch1.jpg",
+        "titleImage": "assets/Archipelago/Library_Logo.png",
         "description": "Archipelago is a third person action rogue like where you fight your way through flying islands to level up and beat the boss. You have access to a sword which allows you to dash incredible distances and you can unlock a bow which lets you grapple around. You can find treasure and enemies on your way to the end of the level. Stream the game to your friends on twitch and watch as they input commands to affect your run!",
         "skills": ["Unreal Engine 5", "Blueprints", "Combat Design", "Prototyping", "Team Management", "Level Design", "L10n", "I18n"],
         "link" : "https://store.steampowered.com/app/2952580/Archipelago/",
@@ -116,6 +116,7 @@
             }
         ]
     }
+    
 
 
 }

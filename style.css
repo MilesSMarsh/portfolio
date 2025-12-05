@@ -288,6 +288,7 @@ main {
     margin: 10px 0;
     font-size: 1.1em;
     color: var(--accent-green);
+    text-decoration: none; 
 }
 
 .about-me-section {

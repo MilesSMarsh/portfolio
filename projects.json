@@ -1,31 +1,31 @@
 {
     "Archipelago": {
         "title": "Archipelago",
-        "titleImage": "assets/Arch1.jpg",
+        "titleImage": "assets/Archipelago/Arch1.jpg",
         "description": "Archipelago is a third person action rogue like where you fight your way through flying islands to level up and beat the boss. You have access to a sword which allows you to dash incredible distances and you can unlock a bow which lets you grapple around. You can find treasure and enemies on your way to the end of the level. Stream the game to your friends on twitch and watch as they input commands to affect your run!",
         "skills": ["Unreal Engine 5", "Blueprints", "Combat Design", "Prototyping", "Team Management", "Level Design", "L10n", "I18n"],
         "link" : "https://store.steampowered.com/app/2952580/Archipelago/",
         "media" : [
             {
                 "type": "image", 
-                "src":"assets/Arch1.jpg",
+                "src":"assets/Archipelago/Arch1.jpg",
                 "alt":"Image"
             },
 
             {
                 "type": "image", 
-                "src":"assets/Arch2.jpg",
+                "src":"assets/Archipelago/Arch2.jpg",
                 "alt":"Image"
             },
 
             {
                 "type": "image", 
-                "src":"assets/Arch3.jpg",
+                "src":"assets/Archipelago/Arch3.jpg",
                 "alt":"Image"
             },
             {
                 "type": "video",
-                "src": "assets/ArchVideo.webm",
+                "src": "assets/Archipelago/ArchVideo.webm",
                 "poster" : "assets/Arch1.jpg"
             }
         ]
@@ -35,10 +35,86 @@
 
     "Window Clicker": {
         "title": "Window Clicker",
-        "titleImage": "assets/WindowClickerIcon.png",
+        "titleImage": "assets/WindowClicker/WindowClickerIcon.png",
         "description": "An incremental idle clicker game revolving around pop up windows. Increase your count by clicking windows and then spend it on fun upgrades.",
         "skills": ["Qt Framework", "C++", "Iteritive Design"],
-        "link" : "https://kingmeelo.itch.io/windowclicker"
+        "link" : "https://kingmeelo.itch.io/windowclicker",
+        "media":[
+            {
+                "type": "image", 
+                "src":"assets/WindowClicker/WindowClickerScreenShot.PNG",
+                "alt":"Image"
+            },
+
+            {
+                "type": "image", 
+                "src":"assets/WindowClicker/WindowClickerScreenShot1.PNG",
+                "alt":"Image"
+            },
+
+            {
+                "type": "image", 
+                "src":"assets/WindowClicker/WindowClickerScreenShot2.PNG",
+                "alt":"Image"
+            }
+        ]
+    },
+    "Runeomancy": {
+        "title": "Runeomancy",
+        "titleImage": "assets/Runeomancy/runeomancy1.png",
+        "description": "Runeomancy is a fun tech demo about crafting spells as you cast them and using them to traverse a 2d pixel puzzle map",
+        "skills": ["Javascript", "Phaser", "Collaboration", "Iteritive Design", "Puzzle Crafting"],
+        "link" : "https://sarowley.github.io/rune_game/",
+        "media":[
+            {
+                "type": "image", 
+                "src":"assets/Runeomancy/runeomancy2.png",
+                "alt":"Image"
+            },
+
+            {
+                "type": "image", 
+                "src":"assets/Runeomancy/runeomancy3.png",
+                "alt":"Image"
+            },
+
+            {
+                "type": "image", 
+                "src":"assets/Runeomancy/runeomancy4.png",
+                "alt":"Image"
+            }
+        ]
+    },
+    "Geocache": {
+        "title": "Geocache",
+        "titleImage": "assets/Geocache/geocache1.png",
+        "description": "This project uses the leaflet map library to simulate geocaching in the real world. If you allow location on your mobile device you can walk around and the caches will deterministically generate in around you. You can then take tokens from one cache and bring them to another and it will remember across visits",
+        "skills": ["Geolocation", "TypeScript", "Leaflet Map Library", "Data Caching", "Deterministic Randomization", "Tokenization", "Mobile Development"],
+        "link" : "https://milessmarsh.github.io/cmpm-121-demo-3/",
+        "media":[
+            {
+                "type": "image", 
+                "src":"assets/Geocache/geocache2.png",
+                "alt":"Image"
+            },
+
+            {
+                "type": "image", 
+                "src":"assets/Geocache/geocache3.png",
+                "alt":"Image"
+            },
+
+            {
+                "type": "image", 
+                "src":"assets/Geocache/geocache4.png",
+                "alt":"Image"
+            },
+            {
+                "type": "image", 
+                "src":"assets/Geocache/geocache5.png",
+                "alt":"Image"
+            }
+        ]
     }
 
 
